@@ -28,24 +28,24 @@ const Footer = () => {
         <div className="footer-column">
           <h3>Metta Muse</h3>
           <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Stroies</a></li>
-            <li><a href="#">Artisans</a></li>
-            <li><a href="#">Boutiques</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">EU Compliance Docs</a></li>
+            <li>About Us</li>
+            <li>Stroies</li>
+            <li>Artisans</li>
+            <li>Boutiques</li>
+            <li>Contact Us</li>
+            <li>EU Compliance Docs</li>
           </ul>
         </div>
         <div className="footer-column">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="#">Order & Shipping</a></li>
-            <li><a href="#">Joi/Login as a seller</a></li>
-            <li><a href="#">Payment & pricing</a></li>
-            <li><a href="#">Refund and Returns</a></li>
-            <li><a href="#">FAQs</a></li>
-            <li><a href="#">Private Policy</a></li>
-            <li><a href="#">Trems & Condition</a></li>
+            <li>Order & Shipping</li>
+            <li>Joi/Login as a seller</li>
+            <li>Payment & pricing</li>
+            <li>Refund and Returns</li>
+            <li>FAQs</li>
+            <li>Private Policy</li>
+            <li>Trems & Condition</li>
           </ul>
         </div>
         <div className="footer-column">

@@ -63,9 +63,7 @@ const HomeScreen = ({ isLikedView }) => {
     console.log('Selected filters:', newFilter);
   };
 
-//   const toggleLikedView = () => {
-//     setIsLikedView((prev) => !prev);
-//   };
+
 
   useEffect(() => {
     async function getData() {
@@ -82,7 +80,6 @@ const HomeScreen = ({ isLikedView }) => {
 
   return (
     <div>
-      {/* <Header onToggleLikedView={toggleLikedView} isLikedView={isLikedView} /> */}
       <div style={containerStyle}>
         <h1 style={titleStyle}>Discover Our Products</h1>
         <p style={textStyle}>
