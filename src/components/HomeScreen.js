@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Product from './Product'; // Import the Product component
 import FilterDropdown from './FilterDropdown'; // Import the FilterDropdown component
+import Header from './Header'; // Import the Header component
 
-const HomeScreen = () => {
+const HomeScreen = ({ isLikedView }) => {
   const [selectedOption, setSelectedOption] = useState('Recommended');
   const [showFilters, setShowFilters] = useState(true);
   const [products, setProducts] = useState([]); // State to store products
   const [likedItems, setLikedItems] = useState(new Set()); // State to store liked items
+//   const [isLikedView, setIsLikedView] = useState(false); // State to manage liked view
   const options = ['Recommended', 'Newest First', 'Popular', 'Price: Low to High', 'Price: High to Low'];
 
   const filterOptions = {
@@ -62,6 +64,10 @@ const HomeScreen = () => {
     console.log('Selected filters:', newFilter);
   };
 
+//   const toggleLikedView = () => {
+//     setIsLikedView((prev) => !prev);
+//   };
+
   useEffect(() => {
     async function getData() {
       const response = await fetch('https://fakestoreapi.com/products');
@@ -71,8 +77,13 @@ const HomeScreen = () => {
     getData();
   }, []);
 
+  const displayedProducts = isLikedView
+    ? products.filter((product) => likedItems.has(product.id))
+    : products;
+
   return (
     <div>
+      {/* <Header onToggleLikedView={toggleLikedView} isLikedView={isLikedView} /> */}
       <div style={containerStyle}>
         <h1 style={titleStyle}>Discover Our Products</h1>
         <p style={textStyle}>
@@ -84,9 +95,9 @@ const HomeScreen = () => {
         <div style={separator}></div>
         <div style={valueContainer}>
           <div style={ItemFilter}>
-            <span>{products.length} items</span>
+            <span>{displayedProducts.length} items</span>
             <span style={filterToggleStyle} onClick={toggleFilters}>
-              {showFilters ? (<div><i className="fa-solid fa-angle-left"></i>Hide filter</div>) : <div><i className="fa-solid fa-angle-right"></i>Show filter</div>}
+              {showFilters ? 'Hide filter' : 'Show filter'}
             </span>
           </div>
           <div>
@@ -120,7 +131,7 @@ const HomeScreen = () => {
         <div style={showFilters ? productsStyleWithFilter : productsStyleFullWidth}>
           <h3>Products</h3>
           <div style={productsGridStyle(showFilters)}>
-            {products.map((product) => (
+            {displayedProducts.map((product) => (
               <Product 
                 key={product.id} 
                 product={product} 
@@ -202,8 +213,8 @@ const optionsStyle = {
 const filterToggleStyle = {
   cursor: 'pointer',
   color: '#808080',
-  textTransform: 'uppercase',
   textDecoration: 'underline',
+  textTransform: 'uppercase',
 };
 
 const contentStyle = {
