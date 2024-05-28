@@ -48,10 +48,7 @@ const likeIconStyle = {
   color: 'gray',
 };
 
-const IconStyle = {
-    padding: '0px 10px 0px 10px',
-    color: 'red',
-    };
+
 const likeIconStyleLiked = {
   cursor: 'pointer',
   color: 'pink',

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Product from './Product'; // Import the Product component
+import FilterDropdown from './FilterDropdown'; // Import the FilterDropdown component
 
 const HomeScreen = () => {
   const [selectedOption, setSelectedOption] = useState('Recommended');
@@ -7,6 +8,34 @@ const HomeScreen = () => {
   const [products, setProducts] = useState([]); // State to store products
   const [likedItems, setLikedItems] = useState(new Set()); // State to store liked items
   const options = ['Recommended', 'Newest First', 'Popular', 'Price: Low to High', 'Price: High to Low'];
+
+  const filterOptions = {
+    "IDEAL FOR": [
+      { label: 'Men', value: 'men' },
+      { label: 'Women', value: 'women' },
+      { label: 'Babies & Kids', value: 'babies&kids' },
+    ],
+    "OCCASION": [
+      { label: 'Casual', value: 'casual' },
+      { label: 'Formal', value: 'formal' },
+      { label: 'Party', value: 'party' },
+    ],
+    "WORK": [
+      { label: 'Office', value: 'office' },
+      { label: 'Home', value: 'home' },
+      { label: 'Outdoor', value: 'outdoor' },
+    ],
+    "FABRIC": [
+      { label: 'Cotton', value: 'cotton' },
+      { label: 'Wool', value: 'wool' },
+      { label: 'Silk', value: 'silk' },
+    ],
+    "SUITABLE FOR": [
+      { label: 'Summer', value: 'summer' },
+      { label: 'Winter', value: 'winter' },
+      { label: 'All Seasons', value: 'allSeasons' },
+    ]
+  };
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
@@ -26,6 +55,11 @@ const HomeScreen = () => {
       }
       return newLikedItems;
     });
+  };
+
+  const handleFilterChange = (newFilter) => {
+    // Implement your filtering logic here
+    console.log('Selected filters:', newFilter);
   };
 
   useEffect(() => {
@@ -52,7 +86,7 @@ const HomeScreen = () => {
           <div style={ItemFilter}>
             <span>{products.length} items</span>
             <span style={filterToggleStyle} onClick={toggleFilters}>
-              {showFilters ? 'Hide filter' : 'Show filter'}
+              {showFilters ? (<div><i className="fa-solid fa-angle-left"></i>Hide filter</div>) : <div><i className="fa-solid fa-angle-right"></i>Show filter</div>}
             </span>
           </div>
           <div>
@@ -71,7 +105,16 @@ const HomeScreen = () => {
         {showFilters && (
           <div style={filterStyle}>
             <h3>Filters</h3>
-            {/* Add your filter options here */}
+            {Object.entries(filterOptions).map(([title, options]) => (
+              <div key={title}>
+                <FilterDropdown
+                  title={title}
+                  options={options}
+                  onFilterChange={handleFilterChange}
+                />
+                <div style={separator}></div>
+              </div>
+            ))}
           </div>
         )}
         <div style={showFilters ? productsStyleWithFilter : productsStyleFullWidth}>
@@ -126,6 +169,7 @@ const separator = {
   height: '1px',
   width: '100%',
   backgroundColor: 'gray',
+  margin: '10px 0',
 };
 
 const titleStyle = {
@@ -157,7 +201,8 @@ const optionsStyle = {
 
 const filterToggleStyle = {
   cursor: 'pointer',
-  color: 'blue',
+  color: '#808080',
+  textTransform: 'uppercase',
   textDecoration: 'underline',
 };
 
