@@ -44,15 +44,16 @@ const productTitleStyle = {
 };
 
 const likeIconStyle = {
+    
   cursor: 'pointer',
   color: 'gray',
 };
 
 
 const likeIconStyleLiked = {
+    
   cursor: 'pointer',
   color: 'pink',
-//   backgroundColor: 'black',
 };
 
 export default Product;

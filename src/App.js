@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import HomeScreen from './components/HomeScreen';
+import Footer from './components/Footer';
 
 const App = () => {
   const [isLikedView, setIsLikedView] = useState(false);
@@ -20,6 +21,7 @@ const App = () => {
         <Route exact path="/" element={<HomeScreen isLikedView={isLikedView} />} />
         {/* Add more routes as needed */}
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };

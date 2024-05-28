@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Product from './Product'; // Import the Product component
 import FilterDropdown from './FilterDropdown'; // Import the FilterDropdown component
-import Header from './Header'; // Import the Header component
+
 
 const HomeScreen = ({ isLikedView }) => {
   const [selectedOption, setSelectedOption] = useState('Recommended');
   const [showFilters, setShowFilters] = useState(true);
   const [products, setProducts] = useState([]); // State to store products
   const [likedItems, setLikedItems] = useState(new Set()); // State to store liked items
-//   const [isLikedView, setIsLikedView] = useState(false); // State to manage liked view
   const options = ['Recommended', 'Newest First', 'Popular', 'Price: Low to High', 'Price: High to Low'];
 
   const filterOptions = {
